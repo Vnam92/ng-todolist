@@ -1,6 +1,6 @@
 # NgTodolist
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
+Sample of Angular app that integrated with Firebase API
 
 ## Development server
 
