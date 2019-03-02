@@ -1,4 +1,4 @@
-import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
+import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -18,6 +18,7 @@ import { TodoFormComponent } from './components/todo-form/todo-form.component';
   imports: [
     BrowserModule,
     MatCardModule,
+    MatIconModule,
     MatInputModule,
     MatButtonModule,
     AppRoutingModule,

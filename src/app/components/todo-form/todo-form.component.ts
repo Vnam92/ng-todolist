@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 
 @Component({
@@ -7,11 +7,13 @@ import { FormControl, FormGroup } from "@angular/forms";
   styleUrls: ['./todo-form.component.scss']
 })
 export class TodoFormComponent {
-  public form: FormGroup = new FormGroup({
+  @Output() public create: EventEmitter<string> = new EventEmitter()
+  private form: FormGroup = new FormGroup({
     task: new FormControl()
   });
 
-  public onSubmit() {
-    console.log('Submit', this.form.value);
+  private onSubmit(): void {
+    this.create.emit(this.form.value);
+    this.form.reset();
   }
 }

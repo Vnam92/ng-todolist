@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Todo } from "../../shared/todo";
 
 @Component({
   selector: 'app-todo-item',
   templateUrl: './todo-item.component.html',
   styleUrls: ['./todo-item.component.scss']
 })
-export class TodoItemComponent implements OnInit {
+export class TodoItemComponent {
+  @Input() private task: Todo;
 
-  constructor() { }
-
-  ngOnInit() {
+  private deleteTask(task: Todo) {
+    console.log(task.task, 'Delete')
   }
-
 }

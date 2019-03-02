@@ -1,3 +1,6 @@
-<p>
-  todo-item works!
-</p>
+<mat-card class="todo-item">
+  <span>{{task.task}}</span>
+  <button mat-icon-button (click)="deleteTask(task)">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-card>
