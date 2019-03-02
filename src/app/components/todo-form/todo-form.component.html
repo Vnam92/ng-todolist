@@ -1,0 +1,11 @@
+<div class="todo-form">
+  <span>todo-form works!</span>
+  <mat-card>
+    <form [formGroup]="form" (submit)="onSubmit()" novalidate>
+      <mat-form-field>
+        <input matInput formControlName="task" type="text" placeholder="Todo description...">
+      </mat-form-field>
+      <button mat-raised-button type="submit">Save</button>
+    </form>
+  </mat-card>
+</div>
