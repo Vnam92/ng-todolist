@@ -1,10 +1,14 @@
 import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { TasksService } from './services/tasks.service';
 
 import { AppComponent } from './app.component';
 import { TodosComponent } from './containers/todos/todos.component';
@@ -25,8 +29,10 @@ import { TodoFormComponent } from './components/todo-form/todo-form.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    AngularFireDatabaseModule,  // Firebase database module ,
+    AngularFireModule.initializeApp(environment.firebaseConfig) // Main Angular fire module
   ],
-  providers: [],
+  providers: [TasksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

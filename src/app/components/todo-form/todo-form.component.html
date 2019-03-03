@@ -1,10 +1,13 @@
 <div class="todo-form">
   <mat-card>
-    <form [formGroup]="form" (submit)="onSubmit()" novalidate>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
       <mat-form-field>
-        <input matInput formControlName="task" type="text" placeholder="Todo description...">
+        <input matInput formControlName="title" type="text" placeholder="Todo description...">
+        <mat-error>
+          <p *ngIf="title.errors?.minlength" class="error"><sup>*</sup>Title shouldn't be less than 2 words</p>
+        </mat-error>
       </mat-form-field>
-      <button mat-raised-button type="submit">Save</button>
+      <button [disabled]="!form.valid" mat-raised-button type="submit">Save</button>
     </form>
   </mat-card>
 </div>
