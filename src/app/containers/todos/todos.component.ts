@@ -8,7 +8,7 @@ import { TasksService } from "../../services/tasks.service";
   styleUrls: ['./todos.component.scss']
 })
 export class TodosComponent implements OnInit {
-  public tasks = [];
+  private tasks: Todo[];
 
   constructor(public tasksApi: TasksService) {}
 
@@ -17,13 +17,13 @@ export class TodosComponent implements OnInit {
   }
 
   private createTask($event: Todo): void {
-    this.tasks.push($event);
-    console.log($event, 'PArent', this.tasks);
+    // this.tasks.push($event);
+    console.log($event, 'PArent');
     this.tasksApi.createTask($event);
   }
 
   private deleteTask(indexTask: number): void {
-    this.tasks.splice(indexTask, 1);
-    console.log(this.tasks, 'Delete');
+    // this.tasks.splice(indexTask, 1);
+    console.log(indexTask, 'Delete');
   }
 }
