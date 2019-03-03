@@ -1,6 +1,6 @@
 <mat-card class="todo-item">
   <span>{{task.task}}</span>
-  <button mat-icon-button (click)="deleteTask(task)">
+  <button mat-icon-button (click)="onDelete($event)">
     <mat-icon>clear</mat-icon>
   </button>
 </mat-card>

@@ -14,8 +14,13 @@ export class TodosComponent implements OnInit {
   ngOnInit() {
   }
 
-  createTodo($event: Todo) {
+  createTask($event: Todo) {
     this.tasks.push($event)
     console.log($event, 'PArent', this.tasks)
+  }
+
+  deleteTask(indexTask: number) {
+    this.tasks.splice(indexTask, 1);
+    console.log(this.tasks, 'Delete')
   }
 }
