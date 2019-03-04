@@ -4,5 +4,7 @@
     [tasks]="tasks"
     (delete)="deleteTask($event)"
     (toggle)="toggleTask($event)"
+    (edit)="editTask($event)"
   ></app-todo-list>
+  <app-edit-form [task]="editingTask"></app-edit-form>
 </div>

@@ -1,15 +1,15 @@
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 
-import { Todo } from '../shared/todo';
+import { ITodo, Todo} from '../shared/todo';
 import { Observable } from "rxjs";
-import {map} from "rxjs/operators";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasksService {
-  public tasksRef: AngularFireList<any>;
+  public tasksRef: AngularFireList<ITodo>;
   public task: AngularFireObject<Todo>;
   public tasks: Observable<Todo[]>;
 

@@ -8,13 +8,18 @@ import { Todo } from "../../shared/todo";
 })
 export class TodoListComponent {
   @Input() private tasks: Todo[];
-  @Output() private delete: EventEmitter<any> = new EventEmitter();
-  @Output() private toggle: EventEmitter<any> = new EventEmitter();
+  @Output() private delete: EventEmitter<string> = new EventEmitter();
+  @Output() private toggle: EventEmitter<Todo> = new EventEmitter();
+  @Output() private edit: EventEmitter<Todo> = new EventEmitter();
 
   private onDelete(key: string): void {
     this.delete.emit(key)
   }
   private onToggle(task: Todo): void {
     this.toggle.emit(task)
+  }
+
+  private onEdit(task: Todo): void {
+    this.edit.emit(task)
   }
 }

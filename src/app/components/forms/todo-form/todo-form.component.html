@@ -2,9 +2,25 @@
   <mat-card>
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
       <mat-form-field>
-        <input matInput formControlName="title" type="text" placeholder="Todo description...">
+        <input
+          matInput
+          type="text"
+          formControlName="title"
+          placeholder="Todo description..."
+        >
         <mat-error>
-          <p *ngIf="title.errors?.minlength" class="error">Title shouldn't be less than 2 words</p>
+          <p
+            *ngIf="title.errors?.minlength"
+            class="error"
+          >
+            Title shouldn't be less than 2 words
+          </p>
+          <p
+            *ngIf="title.errors?.pattern"
+            class="error"
+          >
+            Too many whitespaces
+          </p>
         </mat-error>
       </mat-form-field>
       <div class="btn-group">
