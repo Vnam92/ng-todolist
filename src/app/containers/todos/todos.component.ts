@@ -51,6 +51,7 @@ export class TodosComponent implements OnInit {
     this.openDialog();
   }
 
+  // TODO need to fix this, doesn't called
   private closeEditTask($event): void {
     console.log('closeEditTask $event', $event);
     this.dialogConfig = null;
