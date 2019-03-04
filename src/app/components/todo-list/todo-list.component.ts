@@ -15,6 +15,7 @@ export class TodoListComponent {
   private onDelete(key: string): void {
     this.delete.emit(key)
   }
+
   private onToggle(task: Todo): void {
     this.toggle.emit(task)
   }

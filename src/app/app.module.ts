@@ -1,7 +1,7 @@
 import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { MatDialogModule } from '@angular/material/dialog';
 import { environment } from '../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -43,7 +43,11 @@ import { AppComponent } from './app.component';
     AngularFireDatabaseModule,  // Firebase database module ,
     AngularFireModule.initializeApp(environment.firebaseConfig) // Main Angular fire module
   ],
-  providers: [TasksService],
+  providers: [
+    TasksService,
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+  ],
   bootstrap: [AppComponent],
   entryComponents: [EditFormComponent]
 })

@@ -1,3 +1,12 @@
-<ng-container *ngIf="task">
-  edit-form works!
+<ng-container *ngIf="data">
+  <span mat-dialog-title>Edit todo description</span>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput [value]="data.title">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button (click)="onNoClick($event)">No Thanks</button>
+    <button mat-raised-button [mat-dialog-close]="data.title" (click)="onNoClick($event)">Ok</button>
+  </div>
 </ng-container>

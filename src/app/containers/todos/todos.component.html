@@ -1,10 +1,15 @@
 <div class="todos">
-  <app-todo-form (create)="createTask($event)"></app-todo-form>
+  <app-todo-form
+    (create)="createTask($event)"
+  ></app-todo-form>
   <app-todo-list
     [tasks]="tasks"
     (delete)="deleteTask($event)"
     (toggle)="toggleTask($event)"
     (edit)="editTask($event)"
   ></app-todo-list>
-  <app-edit-form [task]="editingTask"></app-edit-form>
+  <app-edit-form
+    [task]="editingTask"
+    (close)="closeEditTask($event)"
+  ></app-edit-form>
 </div>

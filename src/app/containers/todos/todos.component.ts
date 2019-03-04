@@ -1,4 +1,4 @@
-import {MatDialog, MatDialogConfig} from "@angular/material";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { Component, OnInit } from '@angular/core';
 
 import { TasksService } from "../../services/tasks.service";
@@ -14,8 +14,9 @@ import { EditFormComponent } from "../../components/forms/edit-form/edit-form.co
 export class TodosComponent implements OnInit {
   public tasks: Todo[];
   public editingTask: Todo;
+  public dialogConfig: MatDialogConfig;
 
-  constructor(public tasksApi: TasksService, private dialog: MatDialog) {}
+  constructor(public tasksApi: TasksService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.tasksApi
@@ -23,12 +24,14 @@ export class TodosComponent implements OnInit {
       .subscribe(data => this.tasks = data);
   }
 
-  private openDialog() {
-    const dialogConfig = new MatDialogConfig();
+  private openDialog(): void {
+    this.dialogConfig = new MatDialogConfig();
     // dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
+    this.dialogConfig.autoFocus = true;
+    this.dialogConfig.width = '20rem';
+    this.dialogConfig.data = this.editingTask;
 
-    this.dialog.open(EditFormComponent, dialogConfig);
+    this.dialog.open(EditFormComponent, this.dialogConfig);
   }
 
   private createTask(task: Todo): void {
@@ -43,8 +46,14 @@ export class TodosComponent implements OnInit {
     this.tasksApi.toggleTask(task);
   }
 
-  private editTask(task: Todo) {
+  private editTask(task: Todo): void {
     this.editingTask = task;
     this.openDialog();
+  }
+
+  private closeEditTask($event): void {
+    console.log('closeEditTask $event', $event);
+    this.dialogConfig = null;
+    this.editingTask = null;
   }
 }

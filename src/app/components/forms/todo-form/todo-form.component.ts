@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import {ITodo} from "../../../shared/todo";
+import { ITodo } from "../../../shared/todo";
 
 
 @Component({
