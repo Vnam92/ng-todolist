@@ -1,6 +1,6 @@
-<ng-container *ngFor="let task of tasks; let i = index" class="todo-list">
+<ng-container *ngFor="let task of tasks;" class="todo-list">
   <app-todo-item
-    [task]="task" [index]="i"
+    [task]="task"
     (delete)="onDelete($event)"
     (toggle)="onToggle($event)"
   ></app-todo-item>

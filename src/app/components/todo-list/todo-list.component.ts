@@ -11,8 +11,8 @@ export class TodoListComponent {
   @Output() private delete: EventEmitter<any> = new EventEmitter();
   @Output() private toggle: EventEmitter<any> = new EventEmitter();
 
-  private onDelete(index: number): void {
-    this.delete.emit(index)
+  private onDelete(key: string): void {
+    this.delete.emit(key)
   }
-  private onToggle(index: any): void {}
+  private onToggle(key: string): void {}
 }

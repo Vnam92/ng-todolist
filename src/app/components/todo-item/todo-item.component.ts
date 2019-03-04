@@ -8,15 +8,14 @@ import { Todo } from "../../shared/todo";
 })
 export class TodoItemComponent {
   @Input() private task: Todo;
-  @Input() private index: number;
   @Output() private delete = new EventEmitter();
   @Output() private toggle = new EventEmitter();
 
   private onDelete(): void {
-    this.delete.emit(this.index)
+    this.delete.emit(this.task.key)
   }
 
   private onToggle(): void {
-    this.toggle.emit(this.index)
+    this.toggle.emit(this.task.key)
   }
 }

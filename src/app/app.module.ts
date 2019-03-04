@@ -10,15 +10,22 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { TasksService } from './services/tasks.service';
 
-import { AppComponent } from './app.component';
-import { TodosComponent } from './containers/todos/todos.component';
-import { HeaderComponent } from './components/header/header.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoFormComponent } from './components/todo-form/todo-form.component';
+import { HeaderComponent } from './components/header/header.component';
+import { TodosComponent } from './containers/todos/todos.component';
+import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [AppComponent, TodosComponent, HeaderComponent, TodoListComponent, TodoItemComponent, TodoFormComponent],
+  declarations: [
+    AppComponent,
+    TodosComponent,
+    HeaderComponent,
+    TodoListComponent,
+    TodoItemComponent,
+    TodoFormComponent
+  ],
   imports: [
     BrowserModule,
     MatCardModule,

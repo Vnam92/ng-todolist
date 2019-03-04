@@ -20,6 +20,7 @@ speed-measure-plugin.json
 .classpath
 .c9/
 *.launch
+*.iml
 .settings/
 *.sublime-workspace
 
@@ -44,3 +45,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+

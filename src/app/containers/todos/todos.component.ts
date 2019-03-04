@@ -13,15 +13,17 @@ export class TodosComponent implements OnInit {
 
   constructor(public tasksApi: TasksService) {}
 
-  ngOnInit() {
-    this.tasksApi.getTasksList().subscribe(data => this.tasks = data);
+  ngOnInit(): void {
+    this.tasksApi
+      .getTasksList()
+      .subscribe(data => this.tasks = data);
   }
 
   private createTask($event: Todo): void {
     this.tasksApi.createTask($event);
   }
 
-  private deleteTask(indexTask: number): void {
-    console.log(indexTask, 'Delete');
+  private deleteTask(key: string): void {
+    this.tasksApi.deleteTask(key);
   }
 }
