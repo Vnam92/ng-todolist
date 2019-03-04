@@ -19,11 +19,15 @@ export class TodosComponent implements OnInit {
       .subscribe(data => this.tasks = data);
   }
 
-  private createTask($event: Todo): void {
-    this.tasksApi.createTask($event);
+  private createTask(task: Todo): void {
+    this.tasksApi.createTask(task);
   }
 
   private deleteTask(key: string): void {
     this.tasksApi.deleteTask(key);
+  }
+
+  private toggleTask(task: Todo): void {
+    this.tasksApi.toggleTask(task);
   }
 }

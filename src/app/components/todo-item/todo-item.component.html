@@ -1,6 +1,17 @@
 <mat-card class="todo-item">
-  <span>{{task.title}}</span>
-  <button mat-icon-button (click)="onDelete($event)">
-    <mat-icon>clear</mat-icon>
-  </button>
+  <div class="todo-item-left-elem">
+    <button mat-icon-button (click)="onToggle($event)">
+      <mat-icon *ngIf="task.completed">check_box</mat-icon>
+      <mat-icon *ngIf="!task.completed">check_box_outline_blank</mat-icon>
+    </button>
+    <span [ngClass]="{'completed-text': task.completed}">{{task.title}}</span>
+  </div>
+  <div class="todo-item-right-elem">
+    <button mat-icon-button (click)="onEdit($event)">
+      <mat-icon>create</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onDelete($event)">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
 </mat-card>

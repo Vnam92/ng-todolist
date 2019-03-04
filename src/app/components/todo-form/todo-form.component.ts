@@ -29,6 +29,12 @@ export class TodoFormComponent implements OnInit{
     this.form.reset();
   }
 
+  private onReset(): void {
+    this.form.markAsUntouched();
+    this.form.markAsPristine();
+    this.form.reset();
+  }
+
   private get title(): AbstractControl {
     return this.form.get('title');
   }

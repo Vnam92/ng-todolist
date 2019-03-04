@@ -1,0 +1,20 @@
+.todo-form {
+  .mat-card {
+    form {
+      display: flex;
+      flex-direction: column;
+
+      .mat-form-field {
+        width: 100%;
+      }
+
+      .btn-group {
+        align-self: flex-end;
+
+        .btn-submit {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}

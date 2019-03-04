@@ -8,14 +8,19 @@ import { Todo } from "../../shared/todo";
 })
 export class TodoItemComponent {
   @Input() private task: Todo;
-  @Output() private delete = new EventEmitter();
-  @Output() private toggle = new EventEmitter();
+  @Output() private delete: EventEmitter<any> = new EventEmitter();
+  @Output() private toggle: EventEmitter<any> = new EventEmitter();
+  @Output() private edit: EventEmitter<any> = new EventEmitter();
 
   private onDelete(): void {
     this.delete.emit(this.task.key)
   }
 
   private onToggle(): void {
-    this.toggle.emit(this.task.key)
+    this.toggle.emit(this.task)
+  }
+
+  private onEdit(form): void {
+    this.edit.emit(form)
   }
 }

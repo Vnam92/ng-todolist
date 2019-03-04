@@ -4,10 +4,29 @@
       <mat-form-field>
         <input matInput formControlName="title" type="text" placeholder="Todo description...">
         <mat-error>
-          <p *ngIf="title.errors?.minlength" class="error"><sup>*</sup>Title shouldn't be less than 2 words</p>
+          <p *ngIf="title.errors?.minlength" class="error">Title shouldn't be less than 2 words</p>
         </mat-error>
       </mat-form-field>
-      <button [disabled]="!form.valid" mat-raised-button type="submit">Save</button>
+      <div class="btn-group">
+        <button
+          [disabled]="!title.value"
+          (click)="onReset()"
+          type="reset"
+          mat-raised-button
+        >
+          Reset
+        </button>
+        <button
+          [disabled]="!form.valid"
+          (click)="onSubmit()"
+          class="btn-submit"
+          mat-raised-button
+          color="primary"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
     </form>
   </mat-card>
 </div>

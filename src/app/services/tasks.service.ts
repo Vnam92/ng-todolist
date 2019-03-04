@@ -9,7 +9,7 @@ import {map} from "rxjs/operators";
   providedIn: 'root'
 })
 export class TasksService {
-  public tasksRef: AngularFireList<Todo>;
+  public tasksRef: AngularFireList<any>;
   public task: AngularFireObject<Todo>;
   public tasks: Observable<Todo[]>;
 
@@ -34,6 +34,11 @@ export class TasksService {
   // Fetch Tasks List
   getTasksList(): Observable<Todo[]>{
     return this.tasks;
+  }
+
+  // Toggle Task Object
+  toggleTask(task: Todo): void {
+    this.tasksRef.update(task.key, { title: task.title, completed: !task.completed })
   }
 
   // // Update Task Object
