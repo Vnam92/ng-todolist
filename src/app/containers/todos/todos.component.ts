@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Todo } from "../../shared/todo";
+
 import { TasksService } from "../../services/tasks.service";
+import { Todo } from "../../shared/todo";
 
 @Component({
   selector: 'app-todos',
@@ -8,22 +9,19 @@ import { TasksService } from "../../services/tasks.service";
   styleUrls: ['./todos.component.scss']
 })
 export class TodosComponent implements OnInit {
-  private tasks: Todo[];
+  public tasks: Todo[];
 
   constructor(public tasksApi: TasksService) {}
 
   ngOnInit() {
-    this.tasksApi.getTasksList()
+    this.tasksApi.getTasksList().subscribe(data => this.tasks = data);
   }
 
   private createTask($event: Todo): void {
-    // this.tasks.push($event);
-    console.log($event, 'PArent');
     this.tasksApi.createTask($event);
   }
 
   private deleteTask(indexTask: number): void {
-    // this.tasks.splice(indexTask, 1);
     console.log(indexTask, 'Delete');
   }
 }

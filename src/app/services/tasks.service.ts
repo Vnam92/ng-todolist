@@ -2,39 +2,32 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angula
 import { Injectable } from '@angular/core';
 
 import { Todo } from '../shared/todo';
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasksService {
-  private tasks: AngularFireList<any>;
-  private task: AngularFireObject<any>;
+  private tasks: AngularFireList<Todo>;
+  private task: AngularFireObject<Todo>;
 
   constructor(private db: AngularFireDatabase) {}
 
   // Create task
-  createTask(task: Todo) {
+  createTask(task: Todo): void {
     console.log(task, 'SERVICE')
-    this.tasks.push(task);
+    this.db.list('tasks').push(task);
   }
 
   // Fetch Single Task Object
-  getTask(id: string | number) {
+  getTask(id: string | number): AngularFireObject<Todo> {
     this.task = this.db.object('tasks/' + id);
     return this.task;
   }
 
   // Fetch Tasks List
-  getTasksList() {
-    // TODO REFACTORING!!!!!!
-    let result = null;
-    this.db.list('tasks')
-      .valueChanges()
-      .subscribe(data => {
-        // console.log(data)
-        result = data
-      });
-    return result;
+  getTasksList(): Observable<any>{
+    return this.db.list('tasks').valueChanges();
   }
 
   // // Update Task Object
@@ -46,7 +39,7 @@ export class TasksService {
   // }
 
   // Delete Task Object
-  deleteTask(id: string | number) {
+  deleteTask(id: string | number): void {
     this.task = this.db.object('tasks/'+id);
     this.task.remove();
   }
