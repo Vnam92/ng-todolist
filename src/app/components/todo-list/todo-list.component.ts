@@ -12,15 +12,15 @@ export class TodoListComponent {
   @Output() private toggle: EventEmitter<Todo> = new EventEmitter();
   @Output() private edit: EventEmitter<Todo> = new EventEmitter();
 
-  private onDelete(key: string): void {
+  onDelete(key: string): void {
     this.delete.emit(key)
   }
 
-  private onToggle(task: Todo): void {
+  onToggle(task: Todo): void {
     this.toggle.emit(task)
   }
 
-  private onEdit(task: Todo): void {
+  onEdit(task: Todo): void {
     this.edit.emit(task)
   }
 }

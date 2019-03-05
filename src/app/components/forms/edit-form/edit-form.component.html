@@ -1,12 +1,51 @@
-<ng-container *ngIf="data">
-  <span mat-dialog-title>Edit todo description</span>
-  <div mat-dialog-content>
+<div class="edit-form">
+  <h4 mat-dialog-title>Edit todo description</h4>
+
+  <mat-dialog-content [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field>
-      <input matInput [value]="data.title">
+      <textarea
+        matInput
+        matAutosizeMinRows="1"
+        matAutosizeMaxRows="10"
+        formControlName="title"
+        placeholder="Todo description..."
+      ></textarea>
+      <mat-error>
+        <p
+          *ngIf="title.errors?.minlength"
+          class="error"
+        >
+          Title shouldn't be less than 2 words
+        </p>
+        <p
+          *ngIf="title.errors?.pattern"
+          class="error"
+        >
+          Too many whitespaces
+        </p>
+      </mat-error>
     </mat-form-field>
-  </div>
-  <div mat-dialog-actions>
-    <button mat-raised-button (click)="onNoClick($event)">No Thanks</button>
-    <button mat-raised-button [mat-dialog-close]="data.title" (click)="onNoClick($event)">Ok</button>
-  </div>
-</ng-container>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button
+      type="reset"
+      [disabled]="!title.value"
+      mat-raised-button (click)="onCancel()"
+    >
+      Cancel
+    </button>
+    <button
+      type="submit"
+      color="primary"
+      class="btn-submit"
+      mat-raised-button
+      [disabled]="!form.valid"
+      [mat-dialog-close]="title"
+      (click)="onSubmit()"
+    >
+      Submit
+    </button>
+  </mat-dialog-actions>
+</div>
+

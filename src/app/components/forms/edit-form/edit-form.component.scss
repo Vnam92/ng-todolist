@@ -1,0 +1,12 @@
+.edit-form {
+  mat-dialog-content {
+    mat-form-field {
+      min-width: 40vw;
+    }
+  }
+
+  mat-dialog-actions {
+    margin: 10px 0 0;
+    float: right;
+  }
+}

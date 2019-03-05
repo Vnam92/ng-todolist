@@ -12,11 +12,11 @@ import { EditFormComponent } from "../../components/forms/edit-form/edit-form.co
   styleUrls: ['./todos.component.scss']
 })
 export class TodosComponent implements OnInit {
-  public tasks: Todo[];
-  public editingTask: Todo;
-  public dialogConfig: MatDialogConfig;
+  private tasks: Todo[];
+  private editingTask: Todo;
+  private dialogConfig: MatDialogConfig;
 
-  constructor(public tasksApi: TasksService, public dialog: MatDialog) {}
+  constructor(private tasksApi: TasksService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.tasksApi
@@ -26,35 +26,27 @@ export class TodosComponent implements OnInit {
 
   private openDialog(): void {
     this.dialogConfig = new MatDialogConfig();
-    // dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
-    this.dialogConfig.width = '20rem';
+    this.dialogConfig.minWidth = '40vw';
     this.dialogConfig.data = this.editingTask;
 
     this.dialog.open(EditFormComponent, this.dialogConfig);
   }
 
-  private createTask(task: Todo): void {
+  createTask(task: Todo): void {
     this.tasksApi.createTask(task);
   }
 
-  private deleteTask(key: string): void {
+  deleteTask(key: string): void {
     this.tasksApi.deleteTask(key);
   }
 
-  private toggleTask(task: Todo): void {
+  toggleTask(task: Todo): void {
     this.tasksApi.toggleTask(task);
   }
 
-  private editTask(task: Todo): void {
+  editTask(task: Todo): void {
     this.editingTask = task;
     this.openDialog();
-  }
-
-  // TODO need to fix this, doesn't called
-  private closeEditTask($event): void {
-    console.log('closeEditTask $event', $event);
-    this.dialogConfig = null;
-    this.editingTask = null;
   }
 }

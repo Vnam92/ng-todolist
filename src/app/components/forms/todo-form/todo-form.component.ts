@@ -1,7 +1,7 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ITodo } from "../../../shared/todo";
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 
+import { ITodo } from "../../../shared/todo";
 
 @Component({
   selector: 'app-todo-form',
@@ -9,10 +9,10 @@ import { ITodo } from "../../../shared/todo";
   styleUrls: ['./todo-form.component.scss']
 })
 export class TodoFormComponent implements OnInit{
-  @Output() public create: EventEmitter<ITodo> = new EventEmitter();
   private form: FormGroup;
+  @Output() private create: EventEmitter<ITodo> = new EventEmitter();
 
-  constructor(public fb: FormBuilder){}
+  constructor(private fb: FormBuilder){}
 
   ngOnInit() {
     this.fbForm();
@@ -28,20 +28,23 @@ export class TodoFormComponent implements OnInit{
     })
   }
 
-  private onSubmit(): void {
-    this.form.markAsUntouched();
-    this.form.markAsPristine();
-    this.create.emit({title: this.form.value.title.trim(), completed: false});
-    this.form.reset();
-  }
-
-  private onReset(): void {
+  onSubmit(): void {
+    this.create.emit({
+      completed: false,
+      title: this.form.value.title.trim()
+    });
     this.form.markAsUntouched();
     this.form.markAsPristine();
     this.form.reset();
   }
 
-  public get title(): AbstractControl {
+  onReset(): void {
+    this.form.markAsUntouched();
+    this.form.markAsPristine();
+    this.form.reset();
+  }
+
+  get title(): AbstractControl {
     return this.form.get('title');
   }
 }

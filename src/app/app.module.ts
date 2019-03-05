@@ -1,5 +1,5 @@
 import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule } from '@angular/material';
-import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
@@ -45,10 +45,10 @@ import { AppComponent } from './app.component';
   ],
   providers: [
     TasksService,
-    { provide: MatDialogRef, useValue: {} },
-    { provide: MAT_DIALOG_DATA, useValue: [] },
+    // { provide: MatDialogRef, useValue: {} },
+    // { provide: MAT_DIALOG_DATA, useValue: [] },
   ],
   bootstrap: [AppComponent],
   entryComponents: [EditFormComponent]
 })
-export class AppModule { }
+export class AppModule {}

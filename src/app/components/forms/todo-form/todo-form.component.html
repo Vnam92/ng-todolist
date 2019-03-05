@@ -2,12 +2,13 @@
   <mat-card>
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
       <mat-form-field>
-        <input
+        <textarea
           matInput
-          type="text"
+          matAutosizeMinRows="1"
+          matAutosizeMaxRows="10"
           formControlName="title"
           placeholder="Todo description..."
-        >
+        ></textarea>
         <mat-error>
           <p
             *ngIf="title.errors?.minlength"

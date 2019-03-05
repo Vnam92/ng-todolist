@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { Component, Inject, OnInit } from '@angular/core';
 
+import { TasksService } from "../../../services/tasks.service";
 import { Todo } from "../../../shared/todo";
 
 @Component({
@@ -8,22 +10,46 @@ import { Todo } from "../../../shared/todo";
   templateUrl: './edit-form.component.html',
   styleUrls: ['./edit-form.component.scss']
 })
-export class EditFormComponent implements OnInit{
-  @Input() private task: Todo;
-  @Output() public close: EventEmitter<any> = new EventEmitter();
+export class EditFormComponent implements OnInit {
+  private form: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<EditFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Todo
+    private fb: FormBuilder,
+    private tasksApi: TasksService,
+    private dialogRef: MatDialogRef<EditFormComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: Todo
   ) {}
 
   ngOnInit(): void {
-    // console.log(this.task, this.data)
+    this.fbForm();
   }
 
-  private onNoClick($event): void {
-    console.log('CALL', $event)
-    this.close.emit($event);
+  private fbForm(): void {
+    this.form = this.fb.group({
+      title: [this.data.title, [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.pattern(/^((?!\s{2,}).)*$/)
+      ]],
+    })
+  }
+
+  onSubmit(): void {
+    this.tasksApi.updateTask({
+      key: this.data.key,
+      completed: this.data.completed,
+      title: this.form.value.title.trim(),
+    });
+    this.form.markAsUntouched();
+    this.form.markAsPristine();
+    this.form.reset();
+  }
+
+  onCancel(): void {
     this.dialogRef.close();
+  }
+
+  get title(): AbstractControl {
+    return this.form.get('title');
   }
 }

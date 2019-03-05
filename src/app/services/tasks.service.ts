@@ -9,9 +9,9 @@ import { map } from "rxjs/operators";
   providedIn: 'root'
 })
 export class TasksService {
-  public tasksRef: AngularFireList<ITodo>;
-  public task: AngularFireObject<Todo>;
-  public tasks: Observable<Todo[]>;
+  private tasksRef: AngularFireList<ITodo>;
+  private task: AngularFireObject<Todo>;
+  private tasks: Observable<Todo[]>;
 
   constructor(private db: AngularFireDatabase) {
     this.tasksRef = this.db.list('tasks');
@@ -41,13 +41,10 @@ export class TasksService {
     this.tasksRef.update(task.key, { title: task.title, completed: !task.completed })
   }
 
-  // // Update Task Object
-  // updateTask(task: Todo) {
-  //   this.tasks.update(this.tasks, {
-  //     title: task.title,
-  //     completed: task.completed,
-  //   });
-  // }
+  // Update Task Object
+  updateTask(task: Todo) {
+    this.tasksRef.update(task.key, task);
+  }
 
   // Delete Task Object
   deleteTask(key: string): void {
