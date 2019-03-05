@@ -1,4 +1,10 @@
 <header class="header">
   <img alt="#" src="../../../assets/images/headerLogo.png">
-  <div>Logout</div>
+   <span
+     *ngIf="authService.isLoggedIn"
+      (click)="onLogout()"
+     class="logout"
+   >
+     Logout
+   </span>
 </header>

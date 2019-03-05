@@ -5,6 +5,7 @@
     <mat-form-field>
       <textarea
         matInput
+        matTextareaAutosize
         matAutosizeMinRows="1"
         matAutosizeMaxRows="10"
         formControlName="title"
@@ -15,7 +16,7 @@
           *ngIf="title.errors?.minlength"
           class="error"
         >
-          Title shouldn't be less than 2 words
+          Title shouldn't be less than 2 symbols
         </p>
         <p
           *ngIf="title.errors?.pattern"

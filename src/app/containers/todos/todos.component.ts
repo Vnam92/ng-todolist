@@ -1,7 +1,7 @@
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { Component, OnInit } from '@angular/core';
 
-import { TasksService } from "../../services/tasks.service";
+import { TasksService } from "../../services/tasks/tasks.service";
 import { Todo } from "../../shared/todo";
 
 import { EditFormComponent } from "../../components/forms/edit-form/edit-form.component";

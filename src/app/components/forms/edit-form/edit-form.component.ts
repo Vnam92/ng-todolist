@@ -2,7 +2,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/fo
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Component, Inject, OnInit } from '@angular/core';
 
-import { TasksService } from "../../../services/tasks.service";
+import { TasksService } from "../../../services/tasks/tasks.service";
 import { Todo } from "../../../shared/todo";
 
 @Component({
