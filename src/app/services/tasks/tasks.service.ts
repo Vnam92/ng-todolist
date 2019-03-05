@@ -23,28 +23,46 @@ export class TasksService {
         )));
   }
 
-  // Create task
+  /**
+   * Creating task
+   * @param task
+   */
   createTask(task: Todo): void {
     this.tasksRef.push(task);
   }
 
-  // Fetch Tasks List
+  /**
+   * Fetching tasks list
+   * @return Observable<Todo[]>
+   */
   getTasksList(): Observable<Todo[]>{
     return this.tasks;
   }
 
-  // Toggle Task Object
+  /**
+   * Toggling task
+   * @param task
+   */
   toggleTask(task: Todo): void {
     this.tasksRef.update(task.key, { title: task.title, completed: !task.completed })
+      .catch(e => console.log(e.message));
   }
 
-  // Update Task Object
-  updateTask(task: Todo) {
-    this.tasksRef.update(task.key, task);
+  /**
+   * Updating task
+   * @param task
+   */
+  updateTask(task: Todo): void {
+    this.tasksRef.update(task.key, task)
+      .catch(e => console.log(e.message));
   }
 
-  // Delete Task Object
+  /**
+   * Delete task object by key
+   * @param key
+   */
   deleteTask(key: string): void {
-    this.tasksRef.remove(key);
+    this.tasksRef.remove(key)
+      .catch(e => console.log(e.message));
   }
 }

@@ -1,6 +1,9 @@
 <div class="auth-form">
   <mat-card>
     <mat-card-title>{{formTitle}}</mat-card-title>
+    <mat-error *ngIf="errorMsg" class="api-error">
+      {{errorMsg}}
+    </mat-error>
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
       <mat-form-field>
         <input

@@ -22,7 +22,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { SignInComponent } from './containers/sign-in/sign-in.component';
 import { SignUpComponent } from './containers/sign-up/sign-up.component';
 import { TodosComponent } from './containers/todos/todos.component';
-import { LoginComponent } from './containers/login/login.component';
 
 import { TodoFormComponent } from './components/forms/todo-form/todo-form.component';
 import { EditFormComponent } from './components/forms/edit-form/edit-form.component';
@@ -37,7 +36,6 @@ import { AppComponent } from './app.component';
     AppComponent,
     TodosComponent,
     HeaderComponent,
-    LoginComponent,
     SignInComponent,
     SignUpComponent,
     TodoListComponent,

@@ -1,7 +1,18 @@
 .auth-form {
   .mat-card {
-    width: 380px;
+    min-width: 380px;
+    max-width: 600px;
     margin: 70px auto 0;
+
+    mat-card-title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .api-error {
+      margin-bottom: 20px;
+      text-align: center;
+    }
 
     form {
       display: flex;

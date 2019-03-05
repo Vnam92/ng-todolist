@@ -13,6 +13,7 @@ export class AuthFormComponent implements OnInit {
   @Input() private firstBtnText: string;
   @Input() private secondBtnText: string;
   @Input() private formTitle: string;
+  @Input() private errorMsg: string;
   @Output() private firstBtnClick: EventEmitter<Event> = new EventEmitter();
   @Output() private submitClick: EventEmitter<IAuthCredentials> = new EventEmitter();
 

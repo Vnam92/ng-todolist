@@ -1,4 +1,4 @@
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,10 +10,15 @@ export class RoutesGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  /**
+   * Checking route state for current snapshot
+   * @param next
+   * @param state
+   */
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean | UrlTree {
-    if(this.authService.isLoggedIn){
+    if(this.authService.isLoggedIn) {
       return true;
     } else {
       return this.router.parseUrl('signin');

@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'todos',
     component: TodosComponent,
-    canActivate: [RoutesGuard]
+    canActivate: [RoutesGuard],
   },
   {
     path: 'signup',
@@ -23,7 +23,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/signin',
+    redirectTo: '/todos',
+    pathMatch: 'full'
   },
 ];
 

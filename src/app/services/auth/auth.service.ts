@@ -1,9 +1,10 @@
-import { AngularFireAuth } from  "@angular/fire/auth";
+import { AngularFireAuth } from  '@angular/fire/auth';
 import { Injectable } from '@angular/core';
-import { Router } from  "@angular/router";
+import { Router } from  '@angular/router';
 import { User } from  'firebase';
 
-import { IAuthCredentials } from "../../shared/auth";
+import UserCredential = firebase.auth.UserCredential;
+import { IAuthCredentials } from '../../shared/auth';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -23,35 +24,40 @@ export class AuthService {
     })
   }
 
-  async registerUser(form: IAuthCredentials) {
-    try {
-      await this.fireAuthRef.auth.createUserWithEmailAndPassword(form.email, form.password);
-      this.router.navigate(['login']);
-    } catch (e) {
-      console.log("Error!"  +  e.message);
-    }
+  /**
+   * Registering of new user
+   * @param form
+   * @return Promise<UserCredential>
+   */
+  registerUser(form: IAuthCredentials): Promise<UserCredential> {
+    return this.fireAuthRef.auth.createUserWithEmailAndPassword(form.email, form.password);
   }
 
-  async login(form: IAuthCredentials) {
-    try {
-      await this.fireAuthRef.auth.signInWithEmailAndPassword(form.email, form.password);
-      this.router.navigate(['todos']);
-    } catch (e) {
-      console.log("Error!"  +  e.message);
-    }
+
+  /**
+   * User's authorization
+   * @param form
+   * @return Promise<UserCredential>
+   */
+  login(form: IAuthCredentials): Promise<UserCredential> {
+    return this.fireAuthRef.auth.signInWithEmailAndPassword(form.email, form.password)
   }
 
-  async logout() {
-    try {
-      await this.fireAuthRef.auth.signOut();
-      this.router.navigate(['signin']);
-    } catch (e) {
-      console.log(e.message)
-    } finally {
-      localStorage.removeItem('user');
-    }
+  /**
+   * User's sign out
+   */
+  logout() {
+    this.fireAuthRef.auth.signOut()
+      .then(() => {
+        this.router.navigate(['signin']);
+        localStorage.removeItem('user');
+      })
+      .catch(e => console.log(e.message))
   }
 
+  /**
+   * Check for logined or not user
+   */
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     return user !== null;
