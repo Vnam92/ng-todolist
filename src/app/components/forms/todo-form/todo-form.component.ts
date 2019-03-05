@@ -23,7 +23,6 @@ export class TodoFormComponent implements OnInit{
       title: ['', [
         Validators.required,
         Validators.minLength(2),
-        Validators.pattern(/^((?!\s{2,}).)*$/)
       ]],
     })
   }

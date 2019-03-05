@@ -29,7 +29,6 @@ export class EditFormComponent implements OnInit {
       title: [this.data.title, [
         Validators.required,
         Validators.minLength(2),
-        Validators.pattern(/^((?!\s{2,}).)*$/)
       ]],
     })
   }
