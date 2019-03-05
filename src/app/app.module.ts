@@ -1,7 +1,7 @@
 import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule } from '@angular/material';
-import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { MatDialogModule } from '@angular/material/dialog';
 import { environment } from '../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -27,7 +27,7 @@ import { AppComponent } from './app.component';
     TodoListComponent,
     TodoItemComponent,
     TodoFormComponent,
-    EditFormComponent,
+    EditFormComponent
   ],
   imports: [
     BrowserModule,
@@ -40,13 +40,11 @@ import { AppComponent } from './app.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    AngularFireDatabaseModule,  // Firebase database module ,
-    AngularFireModule.initializeApp(environment.firebaseConfig) // Main Angular fire module
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [
     TasksService,
-    // { provide: MatDialogRef, useValue: {} },
-    // { provide: MAT_DIALOG_DATA, useValue: [] },
   ],
   bootstrap: [AppComponent],
   entryComponents: [EditFormComponent]
