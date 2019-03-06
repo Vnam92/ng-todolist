@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { ITodo, Todo} from '../../shared/todo';
+import { ITodo, Todo } from '../../shared/todo';
+import { getLocalItem } from '../../helpers/utils';
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
@@ -11,7 +12,7 @@ export class TasksService {
   private readonly tasks: Observable<Todo[]>;
 
   constructor(private db: AngularFireDatabase) {
-    this.tasksRef = this.db.list('tasks');
+    this.tasksRef = this.db.list(getLocalItem('todoListId'));
     this.tasks = this.tasksRef
       .snapshotChanges()
       .pipe(map(changes =>
@@ -54,7 +55,7 @@ export class TasksService {
    * @param task
    */
   updateTask(task: Todo): void {
-    this.tasksRef.update(task.key, task)
+    this.tasksRef.update(task.key, { title: task.title, completed: task.completed })
       .catch(e => console.log(e.message));
   }
 

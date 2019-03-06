@@ -5,6 +5,7 @@ import { User } from  'firebase';
 
 import UserCredential = firebase.auth.UserCredential;
 import { IAuthCredentials } from '../../shared/auth';
+import { deleteLocalItem, getLocalItem, setLocalItem } from '../../helpers/utils';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -17,9 +18,9 @@ export class AuthService {
     this.fireAuthRef.authState.subscribe(user => {
       if (user) {
         this.user = user;
-        localStorage.setItem('user', JSON.stringify(this.user));
+        setLocalItem('user', JSON.stringify(this.user))
       } else {
-        localStorage.setItem('user', null);
+        setLocalItem('user', null)
       }
     })
   }
@@ -49,7 +50,10 @@ export class AuthService {
    */
   logout(): Promise<any> {
     return this.fireAuthRef.auth.signOut()
-      .then(() => localStorage.removeItem('user'))
+      .then(() => {
+        deleteLocalItem('user');
+        deleteLocalItem('todoListId');
+      })
       .catch(e => console.log(e.message))
   }
 
@@ -57,7 +61,7 @@ export class AuthService {
    * Check for logined or not user
    */
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(getLocalItem('user'));
     return user !== null;
   }
 }

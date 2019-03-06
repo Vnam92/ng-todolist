@@ -9,11 +9,6 @@ import { RoutesGuard } from './guard/routes.guard';
 
 const routes: Routes = [
   {
-    path: 'todos',
-    component: TodosComponent,
-    canActivate: [RoutesGuard],
-  },
-  {
     path: 'signup',
     component: SignUpComponent,
   },
@@ -23,8 +18,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/todos',
-    pathMatch: 'full'
+    component: TodosComponent,
+    canActivate: [RoutesGuard],
   },
 ];
 
