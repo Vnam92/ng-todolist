@@ -28,7 +28,8 @@ export class TasksService {
    * @param task
    */
   createTask(task: Todo): void {
-    this.tasksRef.push(task);
+    this.tasksRef.push(task)
+      .catch(e => console.log(e.message));
   }
 
   /**
