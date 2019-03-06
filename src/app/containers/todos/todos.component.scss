@@ -1,3 +1,9 @@
+@import "../../../assets/styles/mixins";
+
 .todos {
   padding: 2rem 10rem;
+
+  @include breakpoint(mobile) {
+    padding: 1rem;
+  }
 }
