@@ -12,5 +12,6 @@ export class HeaderComponent {
 
   private onLogout(): void {
     this.authService.logout()
+      .then(() => this.authService.router.navigate(['signin']));
   }
 }

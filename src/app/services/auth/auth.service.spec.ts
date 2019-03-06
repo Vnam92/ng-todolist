@@ -1,3 +1,4 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { inject, TestBed } from '@angular/core/testing';
@@ -5,7 +6,6 @@ import { AuthService } from './auth.service';
 import { of, throwError } from 'rxjs';
 
 describe('AuthService', () => {
-  // An anonymous user
   const authState: any = {
     displayName: null,
     isAnonymous: true,
@@ -30,15 +30,19 @@ describe('AuthService', () => {
     });
   });
 
-  describe('LoginService', () => {
-
+  describe('Calling methods of AuthService ', () => {
     const email: string = 'email';
     const password: string = 'password';
-
     const authStub: any = {
       authState: {},
       auth: {
         signInWithEmailAndPassword() {
+          return Promise.resolve();
+        },
+        createUserWithEmailAndPassword() {
+          return Promise.resolve();
+        },
+        signOut() {
           return Promise.resolve();
         }
       }
@@ -50,12 +54,13 @@ describe('AuthService', () => {
           {provide: AngularFireAuth, useValue: authStub},
           {provide: AngularFireDatabase},
           AuthService
-        ]
+        ],
+        imports: [ RouterTestingModule ],
       });
       authStub.authState = of(null);
     });
 
-    it('should call signInWithPasswordAndEmail', inject([AuthService], (service: AuthService) => {
+    it('Service should call login method', inject([AuthService], (service: AuthService) => {
       const mock = TestBed.get(AngularFireAuth);
       const spy = spyOn(authStub.auth, 'signInWithEmailAndPassword').and.callThrough();
       mock.auth = authStub.auth;
@@ -64,9 +69,29 @@ describe('AuthService', () => {
 
       expect(spy).toHaveBeenCalledWith(email, password);
     }));
+
+    it('Service should call registerUser method', inject([AuthService], (service: AuthService) => {
+      const mock = TestBed.get(AngularFireAuth);
+      const spy = spyOn(authStub.auth, 'createUserWithEmailAndPassword').and.callThrough();
+      mock.auth = authStub.auth;
+
+      service.registerUser({email, password});
+
+      expect(spy).toHaveBeenCalledWith(email, password);
+    }));
+
+    it('Service should call logout method', inject([AuthService], (service: AuthService) => {
+      const mock = TestBed.get(AngularFireAuth);
+      const spy = spyOn(authStub.auth, 'signOut').and.callThrough();
+      mock.auth = authStub.auth;
+
+      service.logout();
+
+      expect(spy).toHaveBeenCalledWith();
+    }));
   });
 
-  describe('AuthService should return error to anonymous user', () => {
+  describe('Service should return error to anonymous user', () => {
     beforeEach(() => {
       const spy = spyOn(mockAngularFireAuth, 'authState');
 

@@ -45,13 +45,11 @@ export class AuthService {
 
   /**
    * User's sign out
+   * @return Promise
    */
-  logout() {
-    this.fireAuthRef.auth.signOut()
-      .then(() => {
-        this.router.navigate(['signin']);
-        localStorage.removeItem('user');
-      })
+  logout(): Promise<any> {
+    return this.fireAuthRef.auth.signOut()
+      .then(() => localStorage.removeItem('user'))
       .catch(e => console.log(e.message))
   }
 
