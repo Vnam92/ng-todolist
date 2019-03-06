@@ -5,7 +5,7 @@ import { User } from  'firebase';
 
 import UserCredential = firebase.auth.UserCredential;
 import { IAuthCredentials } from '../../shared/auth';
-import { deleteLocalItem, getLocalItem, setLocalItem } from '../../helpers/utils';
+import { deleteLocalItem, getLocalItem, setLocalItem, uniqueId } from '../../helpers/utils';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -52,7 +52,7 @@ export class AuthService {
     return this.fireAuthRef.auth.signOut()
       .then(() => {
         deleteLocalItem('user');
-        deleteLocalItem('todoListId');
+        setLocalItem('todoListId', uniqueId());
       })
       .catch(e => console.log(e.message))
   }

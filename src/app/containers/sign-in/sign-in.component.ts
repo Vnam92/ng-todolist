@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../../services/auth/auth.service';
 import { IAuthCredentials } from '../../shared/auth';
+import { getLocalItem } from '../../helpers/utils';
 
 @Component({
   selector: 'app-sign-in',
@@ -32,6 +33,6 @@ export class SignInComponent implements OnInit {
   }
 
   private successRedirect(): void {
-    this.authService.router.navigate(['todos']);
+    this.authService.router.navigate([getLocalItem('todoListId')]);
   }
 }

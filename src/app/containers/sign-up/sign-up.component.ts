@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../../services/auth/auth.service';
 import { IAuthCredentials } from '../../shared/auth';
+import {getLocalItem} from "../../helpers/utils";
 
 @Component({
   selector: 'app-sign-up',
@@ -14,7 +15,7 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
     if (this.authService.isLoggedIn) {
-      this.authService.router.navigate(['todos']);
+      this.authService.router.navigate([getLocalItem('todoListId')]);
     }
   }
   

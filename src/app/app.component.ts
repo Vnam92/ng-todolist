@@ -7,14 +7,9 @@ import { setLocalItem, getLocalItem, uniqueId } from './helpers/utils';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  private readonly todoListId: string;
-
   constructor() {
-        this.todoListId = getLocalItem('todoListId');
-    if (!this.todoListId) {
-      this.todoListId = uniqueId();
-      setLocalItem('todoListId', this.todoListId);
+    if (!getLocalItem('todoListId')) {
+      setLocalItem('todoListId', uniqueId());
     }
-    console.log('APP component! todoListId: ' + this.todoListId)
   }
 }
