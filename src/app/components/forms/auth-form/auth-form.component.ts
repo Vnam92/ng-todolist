@@ -19,7 +19,7 @@ export class AuthFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder){}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.fbForm();
   }
 

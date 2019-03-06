@@ -1,9 +1,10 @@
 import {
   MatCardModule,
-  MatFormFieldModule,
+  MatIconModule,
   MatInputModule,
   MatButtonModule,
-  MatIconModule,
+  MatSnackBarModule,
+  MatFormFieldModule,
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -23,11 +24,13 @@ import { SignInComponent } from './containers/sign-in/sign-in.component';
 import { SignUpComponent } from './containers/sign-up/sign-up.component';
 import { TodosComponent } from './containers/todos/todos.component';
 
+import { SnackBarTextComponent } from './components/snack-bar-text/snack-bar-text.component';
 import { TodoFormComponent } from './components/forms/todo-form/todo-form.component';
 import { EditFormComponent } from './components/forms/edit-form/edit-form.component';
 import { AuthFormComponent } from './components/forms/auth-form/auth-form.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AppComponent } from './app.component';
 
@@ -42,7 +45,9 @@ import { AppComponent } from './app.component';
     TodoItemComponent,
     TodoFormComponent,
     AuthFormComponent,
-    EditFormComponent
+    EditFormComponent,
+    SnackBarComponent,
+    SnackBarTextComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +57,7 @@ import { AppComponent } from './app.component';
     MatButtonModule,
     MatDialogModule,
     AppRoutingModule,
+    MatSnackBarModule,
     MatFormFieldModule,
     ReactiveFormsModule,
     AngularFireAuthModule,
@@ -62,8 +68,13 @@ import { AppComponent } from './app.component';
   providers: [
     TasksService,
     AuthService,
+    SnackBarComponent,
   ],
   bootstrap: [AppComponent],
-  entryComponents: [EditFormComponent]
+  entryComponents: [
+    EditFormComponent,
+    SnackBarComponent,
+    SnackBarTextComponent,
+  ]
 })
 export class AppModule {}

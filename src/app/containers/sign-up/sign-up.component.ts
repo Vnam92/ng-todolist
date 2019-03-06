@@ -13,7 +13,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.authService.isLoggedIn) {
       this.authService.router.navigate([getLocalItem('todoListId')]);
     }

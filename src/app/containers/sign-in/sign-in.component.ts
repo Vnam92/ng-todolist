@@ -13,7 +13,7 @@ export class SignInComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.authService.isLoggedIn) {
       this.successRedirect();
     }

@@ -8,8 +8,8 @@ import { getLocalItem } from '../../helpers/utils';
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
-  private tasksRef: AngularFireList<ITodo>;
   private readonly tasks: Observable<Todo[]>;
+  private tasksRef: AngularFireList<ITodo>;
 
   constructor(private db: AngularFireDatabase) {
     this.tasksRef = this.db.list(getLocalItem('todoListId'));
@@ -19,7 +19,7 @@ export class TasksService {
         changes.map(c =>
           ({
             key: c.payload.key,
-            ...c.payload.val(),
+            ...c.payload.val()
           })
         )));
   }

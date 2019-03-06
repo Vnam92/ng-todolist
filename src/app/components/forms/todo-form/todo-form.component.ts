@@ -14,7 +14,7 @@ export class TodoFormComponent implements OnInit{
 
   constructor(private fb: FormBuilder){}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.fbForm();
   }
 
