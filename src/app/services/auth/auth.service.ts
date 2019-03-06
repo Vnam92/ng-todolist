@@ -11,7 +11,7 @@ export class AuthService {
   private user: User;
 
   constructor(
-    private fireAuthRef: AngularFireAuth,
+    public fireAuthRef: AngularFireAuth,
     public router: Router
   ) {
     this.fireAuthRef.authState.subscribe(user => {
