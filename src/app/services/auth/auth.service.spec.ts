@@ -6,34 +6,10 @@ import { AuthService } from './auth.service';
 import { of, throwError } from 'rxjs';
 
 describe('AuthService', () => {
-  const authState: any = {
-    displayName: null,
-    isAnonymous: true,
-    uid: '56s4dfsd1sga5dsg4ad6g456ad4g64'
-  };
-
-  const mockAngularFireAuth: any = {
-    auth: jasmine.createSpyObj('auth', {
-      'signInAnonymously': Promise.resolve({
-        code: 'auth/operation-not-allowed'
-      }),
-    }),
-    authState: of(authState)
-  };
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        { provide: AngularFireAuth, useValue: mockAngularFireAuth },
-        { provide: AuthService, useClass: AuthService }
-      ]
-    });
-  });
-
-  describe('Calling methods of AuthService ', () => {
-    const email: string = 'email';
-    const password: string = 'password';
-    const authStub: any = {
+  describe('Should call all methods', () => {
+    const email = 'email';
+    const password = 'password';
+    const authStub = {
       authState: {},
       auth: {
         signInWithEmailAndPassword() {
@@ -55,7 +31,7 @@ describe('AuthService', () => {
           {provide: AngularFireDatabase},
           AuthService
         ],
-        imports: [ RouterTestingModule ],
+        imports: [RouterTestingModule],
       });
       authStub.authState = of(null);
     });
@@ -91,11 +67,32 @@ describe('AuthService', () => {
     }));
   });
 
-  describe('Service should return error to anonymous user', () => {
+  describe('Should return error to anonymous user', () => {
+    const authState = {
+      displayName: null,
+      isAnonymous: true,
+      uid: '56s4dfsd1sga5dsg4ad6g456ad4g64'
+    };
+
+    const mockAngularFireAuth: any = {
+      auth: jasmine.createSpyObj('auth', {
+        'signInAnonymously': Promise.resolve({
+          code: 'auth/operation-not-allowed'
+        }),
+      }),
+      authState: of(authState)
+    };
+
     beforeEach(() => {
       const spy = spyOn(mockAngularFireAuth, 'authState');
 
       spy.and.returnValue(throwError(new Error('Something went wrong')));
+      TestBed.configureTestingModule({
+        providers: [
+          { provide: AngularFireAuth, useValue: mockAngularFireAuth },
+          { provide: AuthService, useClass: AuthService }
+        ]
+      });
     });
 
     describe('AngularFireAuth.authState', () => {
