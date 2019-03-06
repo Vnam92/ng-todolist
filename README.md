@@ -1,6 +1,10 @@
 # NgTodolist
 
-Todo app that based on Angular7 and Firebase API
+App that based on Angular7 and Firebase API
+
+## Install modules
+
+Run `npm install` for install all dependencies.
 
 ## Development server
 
