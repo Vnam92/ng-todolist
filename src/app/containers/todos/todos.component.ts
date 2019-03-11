@@ -24,7 +24,10 @@ export class TodosComponent implements OnInit {
     this.tasksApi
       .getTasksList()
       .subscribe(data => {
-        if (this.isDialogOpened) {
+        if (
+          this.isDialogOpened &&
+          data.some(elem => (elem.key === this.editingTask.key) && elem.title !== this.editingTask.title)
+        ) {
           this.toast.openSnackBar();
           this.isDialogOpened = false;
         }
